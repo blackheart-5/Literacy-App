@@ -1,20 +1,28 @@
-import { useState, useEffect } from 'react';
-import { getUserProfile } from './api/vocabulary/api';
+import React, { useState, useEffect } from 'react';
+import { getUserProfile } from '../pages/api/vocabulary/api';
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const data = await getUserProfile();
-      setProfile(data);
+      try {
+        const data = await getUserProfile();
+        setProfile(data);
+      } catch (err) {
+        setError('Failed to load profile. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
     };
     fetchProfile();
   }, []);
 
-  if (!profile) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+  if (!profile) return <div>No profile data available.</div>;
 
   return (
     <div className="container">

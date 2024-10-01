@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import dbConnect from '/utils/database'
+import Link from 'next/link';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -55,6 +56,11 @@ export default function Login() {
           />
         </div>
         <button type="submit">Login</button>
+        <div>
+          <button> <Link href="/Register">
+           SignUp
+        </Link></button>
+        </div>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>

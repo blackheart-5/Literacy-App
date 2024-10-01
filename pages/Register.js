@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import dbConnect from '/utils/database'
+import User from '../models/User';
 
 export default function Register() {
   const [username, setUsername] = useState('');
@@ -19,7 +20,7 @@ export default function Register() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),
       });
-
+    
       
 
       if (res.ok) {
@@ -35,6 +36,14 @@ export default function Register() {
     } catch (error) {
       setError('An error occurred. Please try again.');
     }
+
+    try {
+      await User.save();
+      console.log('User saved successfully');
+    } catch (error) {
+      console.error('Error saving user:', error);
+    }
+  
   };
 
   return (
@@ -71,7 +80,7 @@ export default function Register() {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">SignUp</button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>

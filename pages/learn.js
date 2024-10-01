@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import Home from './index';
+
 import { useState, useEffect } from 'react';
 import Flashcard from '../components/flashcard';
 
@@ -25,6 +28,7 @@ const LearnPage = () => {
         setError(null);
         const vocab = await getVocabulary(difficulty);
         setVocabulary(vocab);
+        console.log(vocab);
       } catch (err) {
         setError('Failed to fetch vocabulary. Please try again later.');
       } finally {
@@ -50,7 +54,29 @@ const LearnPage = () => {
 
   return (
     <div>
-      <h1>Learn Vocabulary</h1>
+      <div className="learn-header">
+        <h1>Learn Vocabulary</h1> 
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <button> <Link href="/learn">Home</Link> </button>
+          </li>
+          <li>
+            <button><Link href="/Login">LogOut</Link> </button>
+          </li>
+          <li>
+            <button> <Link href="/progress">Progress</Link> </button>
+          </li>
+          <li>
+           <button> <Link href="/profile">Profile</Link></button>
+          </li>
+          <li>
+            <button><Link href="/settings">Settings</Link></button>
+          </li>
+        </ul>
+      </nav>
+      
       <select value={difficulty} onChange={handleDifficultyChange}>
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
