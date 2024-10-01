@@ -1,8 +1,12 @@
 import mongoose from 'mongoose';
+require('dotenv').config();
+
 
 const MONGODB_URL = 'mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.1'
+//process.env.MONGODB_URL;
 
-console.log("MONGODB_URL:", process.env.MONGODB_URL);
+
+
 
 if (!MONGODB_URL){
     throw new Error('Sorry missing environment variable of MOGODB_URL in .env')
@@ -34,7 +38,7 @@ async function dbConnect() {
     return cached.conn;
 }
 
-
+console.log('connected to database');
 export default dbConnect
 
 

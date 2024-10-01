@@ -80,7 +80,7 @@ const Flashcard = ({ word, translation, image, audio }) => {
       <div className={`flashcard-inner ${isFlipped ? 'flipped' : ''}`}>
         <div className="flashcard-front">
           <h2>{word}</h2>
-          <Image src={image} alt={word} />
+          <Image src={image} width={500} height={300} alt={word} />
           <ReactAudioPlayer src={audio} controls />
         </div>
         <div className="flashcard-back">

@@ -1,4 +1,4 @@
-import { connectToDatabase } from '../../../utils/database';
+import { dbConnect } from '../../../utils/database';
 import { verifyToken } from '../../../utils/auth';
 
 export default async function handler(req, res) {
@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { db } = await connectToDatabase();
+    const { db } = await dbConnect();
     const user = await verifyToken(req);
 
     if (!user) {

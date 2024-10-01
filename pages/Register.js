@@ -23,7 +23,7 @@ export default function Register() {
       
 
       if (res.ok) {
-        router.push('/login'); // Redirect to login page on successful registration
+        router.push('/Login'); // Redirect to login page on successful registration
       }
 
       else {

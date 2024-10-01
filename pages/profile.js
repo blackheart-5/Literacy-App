@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getUserProfile } from '../utils/api';
+import { getUserProfile } from './api/vocabulary/api';
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);

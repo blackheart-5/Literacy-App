@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { updateUserSettings } from '../utils/api';
+import { updateUserSettings } from './api/vocabulary/api';
 
 const SettingsPage = () => {
   const [settings, setSettings] = useState({
