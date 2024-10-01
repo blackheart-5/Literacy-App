@@ -23,3 +23,15 @@ To get started with the Literacy App, follow these steps:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/literacy-app.git
+In CMD run follwing:
+
+2.  cd literacy-app
+
+3.  npm install
+Set up environment variables: Create a .env.local file in the root of your project and add your MongoDB connection string and any other necessary configuration.
+
+Run the application:
+
+4. npm run dev
+5. 
+Visit the app: Open your browser and go to http://localhost:3000.
