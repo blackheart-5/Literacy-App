@@ -23,7 +23,7 @@ const LearnPage = () => {
 
   useEffect(() => {
     const fetchVocabulary = async () => {
-      try {yyuyxtydr
+      try {
         setIsLoading(true);
         setError(null);
         const vocab = await getVocabulary(difficulty);
