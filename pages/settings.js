@@ -16,7 +16,7 @@ const SettingsPage = () => {
         const profile = await getUserProfile();
         setSettings(profile.settings);
       } catch (err) {
-        setError('Failed to load settings. Please try again later.');
+        setError('Failed to load settings. Please try again later.', err);
       } finally {
         setLoading(false);
       }
