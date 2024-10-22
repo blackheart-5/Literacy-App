@@ -12,7 +12,7 @@ export default function Layout({ children }) {
       <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>
-        <p>© 2023 Flashcard Language Learning App</p>
+        <p>© 2024 Flashcard Language Learning App</p>
       </footer>
     </div>
   );

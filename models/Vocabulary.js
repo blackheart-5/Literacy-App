@@ -1,30 +1,3 @@
-// import mongoose from 'mongoose'
-
-// const VocabSchema =  new mongoose.Schema({
-//     word:{
-//         type:String,
-//         required: true
-//     },
-
-//     transaltion:{
-//         type: String,
-//         required: true
-//     },
-
-//     difficulty:{
-//         type: String,
-//         enum: ['beginner', 'intermediate', 'advanced'],
-//         default: 'beginner',
-//     },
-
-//     imageUrl: String,
-//     audioUrl: String
-// })
-
-
-// export default mongoose.models.Vocabulary || mongoose.model('Vocabulary', VocabSchema);
-
-
 
 import mongoose from 'mongoose';
 
