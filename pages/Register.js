@@ -13,39 +13,25 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
+  
     try {
       const res = await fetch('/Register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, email, password }), // Send sign-up details
       });
-    
-      
-
+  
       if (res.ok) {
-        router.push('/Login'); // Redirect to login page on successful registration
-      }
-
-      else {
+        router.push('/Login'); // Redirect to login page
+      } else {
         const data = await res.json();
-        
         setError(data.message || 'Registration failed');
       }
-
     } catch (error) {
       setError('An error occurred. Please try again.');
     }
-
-    try {
-      await User.save();
-      console.log('User saved successfully');
-    } catch (error) {
-      console.error('Error saving user:', error);
-    }
-  
   };
-
+  
   return (
     <div>
       <h1>Register</h1>

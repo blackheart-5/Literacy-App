@@ -6,31 +6,38 @@ import bcrypts from 'bcryptjs';
 import jwt  from 'jsonwebtoken';
 
 
+export default async function handler(req, res) {
+  await dbConnect(); // Ensure database is connected
 
+  if (req.method === 'POST') {
+    const { email, password } = req.body;
 
-export default async function handler(request, response){
-    await dbConnect;
-    if (request.method !== 'POST'){
-        return response.status(405).json({message: 'Method not supported'});
+    if (!email || !password) {
+      return res.status(400).json({ message: 'All fields are required.' });
     }
 
+    try {
+      // Check if user exists
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(400).json({ message: 'User not found.' });
+      }
 
-    const {username, password} = request.body;
+      // Compare the provided password with the stored hashed password
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return res.status(400).json({ message: 'Invalid credentials.' });
+      }
 
-    try{
-        const user = await User.findOne({username});
-        if(!user){
-            return response.status(400).json({message:'Invalid Username'});
-        }
-
-        const isFound = await bcrypt.comapare(password, user.password);
-        if (!isFound){
-            return response.status(400).json({message:'Invalid Password'})
-        }
-        //if user is valid
-        const token = jwt.sign({userId:user._id}, process.env.JWT_SECRET, {expiresIn:'1h'});
-        response.status(200).json({token,userId: user._id});
-    } catch (error){
-        response.status(500).json({message:'Error logging in', error: error.message});
+      // At this point, the user is authenticated
+      return res.status(200).json({ message: 'Login successful.' });
+      
+      // Optionally, you can add logic for setting up sessions or JWT tokens for authentication
+    } catch (error) {
+      console.error('Login error:', error);
+      return res.status(500).json({ message: 'Server error. Please try again later.' });
     }
+  } else {
+    res.status(405).json({ message: 'Method not allowed' });
+  }
 }
