@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+// import User from './Vocabulary';
 
 const UserSchema = new mongoose.Schema({
     username:{
@@ -44,7 +45,6 @@ const UserSchema = new mongoose.Schema({
 // } catch (error) {
 //   console.error('Error creating or retrieving the User model:', error);
 // }
-// // console.log(User);
 const User = mongoose.models.User || mongoose.model('User', UserSchema);
 //let User = User_model
 export default User

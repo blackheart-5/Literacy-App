@@ -11,7 +11,7 @@ export default async function getUserProfile() {
 
           //'Authorization': `Bearer ${localStorage.getItem('token')}` // Assuming you store the auth token in localStorage
           },
-        //body: JSON.stringify({email, username})
+        body: JSON.stringify({email, username})
       }
     );
   

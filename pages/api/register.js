@@ -1,6 +1,7 @@
 import User from '@/models/User';
 import bycrypt from 'bcrypt';
 import dbConnect from '@/utils/database';
+import { createSession } from '@/lib/session';
 
 export default async function handler(req,res){
     if (req.method !== 'POST'){

@@ -5,7 +5,7 @@ const VocabularySchema = new mongoose.Schema({
   word: {
     type: String,
     required: true,
-    unique:true,
+    unique: true,
   },
   translation: {
     type: String,
@@ -34,15 +34,4 @@ const VocabularySchema = new mongoose.Schema({
   },
 });
 
-// export default mongoose.models.Vocabulary || 
-
-let User;
-
-try {
-  // Check if the model already exists, or create a new one
-  User = mongoose.model('Vocabulary', VocabularySchema);
-} catch (error) {
-  console.error('Error creating or retrieving the User model:', error);
-}
-
-export default User;
+export default mongoose.models.Vocabulary || mongoose.model('Vocabulary', VocabularySchema);

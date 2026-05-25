@@ -2,258 +2,127 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div>
-      <h1>Welcome to Language Learning App</h1>
-      <nav>
-        <Link href="/Login">
-          Login
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'radial-gradient(ellipse at 60% 20%, rgba(168,85,247,0.18) 0%, #0f172a 45%), radial-gradient(ellipse at 20% 80%, rgba(34,211,238,0.12) 0%, transparent 50%)',
+      padding: '2rem',
+      textAlign: 'center',
+    }}>
+
+      {/* Glow orbs */}
+      <div style={{
+        position: 'absolute', top: '15%', left: '10%',
+        width: '300px', height: '300px', borderRadius: '50%',
+        background: 'rgba(168,85,247,0.08)', filter: 'blur(60px)',
+        pointerEvents: 'none',
+      }} />
+      <div style={{
+        position: 'absolute', bottom: '20%', right: '10%',
+        width: '250px', height: '250px', borderRadius: '50%',
+        background: 'rgba(34,211,238,0.08)', filter: 'blur(60px)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Badge */}
+      <div style={{
+        display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+        padding: '0.35rem 1rem',
+        background: 'rgba(34,211,238,0.1)',
+        border: '1px solid rgba(34,211,238,0.25)',
+        borderRadius: '999px',
+        fontSize: '0.8rem', fontWeight: '500',
+        color: '#22d3ee',
+        marginBottom: '1.75rem',
+        letterSpacing: '0.04em',
+      }}>
+        ✦ Language Learning, Reimagined
+      </div>
+
+      {/* Heading */}
+      <h1 style={{
+        fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+        fontWeight: '800',
+        lineHeight: '1.1',
+        maxWidth: '760px',
+        margin: '0 0 1.25rem',
+        letterSpacing: '-0.02em',
+      }}>
+        <span style={{
+          background: 'linear-gradient(135deg, #f1f5f9 30%, rgba(255,255,255,0.6))',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}>
+          Master new words{' '}
+        </span>
+        <span style={{
+          background: 'linear-gradient(135deg, #22d3ee, #a855f7)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}>
+          faster than ever
+        </span>
+      </h1>
+
+      <p style={{
+        fontSize: '1.1rem',
+        color: 'rgba(255,255,255,0.5)',
+        maxWidth: '500px',
+        lineHeight: '1.7',
+        margin: '0 0 2.5rem',
+      }}>
+        Adaptive flashcards, progress tracking, and spaced repetition — all in one sleek app built for serious learners.
+      </p>
+
+      {/* CTA Buttons */}
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <Link href="/Register" style={{
+          padding: '0.85rem 2rem',
+          borderRadius: '0.625rem',
+          background: 'linear-gradient(135deg, #22d3ee, #a855f7)',
+          color: 'white',
+          fontWeight: '600',
+          fontSize: '0.95rem',
+          boxShadow: '0 0 24px rgba(34,211,238,0.25)',
+          transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+        }}>
+          Get started free →
         </Link>
-        <Link href="/Register">
-          SignUp
+        <Link href="/Login" style={{
+          padding: '0.85rem 2rem',
+          borderRadius: '0.625rem',
+          background: 'rgba(255,255,255,0.06)',
+          border: '1px solid rgba(255,255,255,0.12)',
+          color: 'rgba(255,255,255,0.8)',
+          fontWeight: '500',
+          fontSize: '0.95rem',
+          transition: 'background 0.15s ease',
+        }}>
+          Sign in
         </Link>
-        <Link href="/Login">
-          Start Learning
-        </Link>
-      </nav>
+      </div>
+
+      {/* Feature chips */}
+      <div style={{
+        display: 'flex', gap: '0.75rem', flexWrap: 'wrap',
+        justifyContent: 'center', marginTop: '3.5rem',
+      }}>
+        {['🃏 Flashcards', '📊 Progress tracking', '🎯 Difficulty levels', '🔄 Spaced repetition'].map((f) => (
+          <span key={f} style={{
+            padding: '0.4rem 0.9rem',
+            background: 'rgba(255,255,255,0.05)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: '999px',
+            fontSize: '0.8rem',
+            color: 'rgba(255,255,255,0.5)',
+          }}>
+            {f}
+          </span>
+        ))}
+      </div>
     </div>
-  )
+  );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import Head from "next/head";
-// import Image from "next/image";
-// import localFont from "next/font/local";
-// import styles from "@/styles/Home.module.css";
-
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });
-
-// export default function Home() {
-//   return (
-//     <>
-//       <Head>
-//         <title>Create Next App</title>
-//         <meta name="description" content="Generated by create next app" />
-//         <meta name="viewport" content="width=device-width, initial-scale=1" />
-//         <link rel="icon" href="/favicon.ico" />
-//       </Head>
-//       <div
-//         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
-//       >
-//         <main className={styles.main}>
-//           <Image
-//             className={styles.logo}
-//             src="https://nextjs.org/icons/next.svg"
-//             alt="Next.js logo"
-//             width={180}
-//             height={38}
-//             priority
-//           />
-//           <ol>
-//             <li>
-//               Get started by editing <code>pages/index.js</code>.
-//             </li>
-//             <li>Save and see your changes instantly.</li>
-//           </ol>
-
-//           <div className={styles.ctas}>
-//             <a
-//               className={styles.primary}
-//               href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//             >
-//               <Image
-//                 className={styles.logo}
-//                 src="https://nextjs.org/icons/vercel.svg"
-//                 alt="Vercel logomark"
-//                 width={20}
-//                 height={20}
-//               />
-//               Deploy now
-//             </a>
-//             <a
-//               href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className={styles.secondary}
-//             >
-//               Read our docs
-//             </a>
-//           </div>
-//         </main>
-//         <footer className={styles.footer}>
-//           <a
-//             href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             <Image
-//               aria-hidden
-//               src="https://nextjs.org/icons/file.svg"
-//               alt="File icon"
-//               width={16}
-//               height={16}
-//             />
-//             Learn
-//           </a>
-//           <a
-//             href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             <Image
-//               aria-hidden
-//               src="https://nextjs.org/icons/window.svg"
-//               alt="Window icon"
-//               width={16}
-//               height={16}
-//             />
-//             Examples
-//           </a>
-//           <a
-//             href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             <Image
-//               aria-hidden
-//               src="https://nextjs.org/icons/globe.svg"
-//               alt="Globe icon"
-//               width={16}
-//               height={16}
-//             />
-//             Go to nextjs.org →
-//           </a>
-//         </footer>
-//       </div>
-//     </>
-//   );
-// }

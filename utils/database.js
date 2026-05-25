@@ -1,9 +1,7 @@
 import mongoose from 'mongoose';
 
 
-const MONGO_URL = 'mongodb+srv://tsekpopa:dSNlqdKcW9XlXWLg@users.zto7k.mongodb.net/?retryWrites=true&w=majority&appName=USERS';
-
-// console.log('MongoDB URL:', process.env.MONGODB_URL);
+const MONGO_URL = process.env.MONGODB_URL;
 
 if (!MONGO_URL) {
         throw new Error('Missing MONGODB_URL environment variable');
@@ -25,19 +23,20 @@ async function dbConnect(){
         }
 
         if (!cached.promise) {
-            const opts = {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-            };
+            // const opts = {
+            //     useNewUrlParser: true,
+            //     useUnifiedTopology: true,
+            // };
 
-            cached.promise = mongoose.connect(MONGO_URL, opts).then((mongoose) => {
+            cached.promise = mongoose.connect(MONGO_URL).then((mongoose) => {
                 return mongoose;
             });
         }
 
         cached.conn = await cached.promise;
+        console.log('MongoDB connected');
         return cached.conn;
-        console.log('MongoDB connected'); //check if connected
+         //check if connected
         // console.log('Existing models:', mongoose.models);
         // console.log('Mongoose connection state:', mongoose.connection.readyState);
 

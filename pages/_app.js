@@ -1,15 +1,11 @@
 import "../styles/globals.css";
-//handle usesession state for session management
-import { SessionProvider } from "next-auth/react";
-
+import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter();
   return (
-    <SessionProvider session = {pageProps.session}>
+    <div key={router.pathname} className="page-fade">
       <Component {...pageProps} />
-    </SessionProvider>
-
-);
+    </div>
+  );
 }
-
-

@@ -1,101 +1,73 @@
-import React, {useState} from 'react';
-import Image from 'next/image'
-import ReactAudioPlayer from 'react-audio-player';
+import React, { useState } from 'react';
+import styles from '../styles/FlashCard.module.css';
 
-// const Flashcard = ({ word, translation, imageUrl,audioUrl, onAnswer}) => {
-//     const [flipped, setFlipped] = useState(false);
-//     const[userInput, setUserInput] = useState('');
-
-// //update the flip state when card is flipped and setflip updates with !flip
-//     const handleflip = () => setFlipped=(!flipped);
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         onAnswer(userInput.toLowerCase() === translation.toLowerCase());
-//         setUserInput('');
-//         setFlipped(false);
-//     };
-
-//     const playAudio = () => {
-//         const audio = new Audio(audioUrl);
-//         audio.play();
-//     };
-
-
-//     return (
-//         <div className="flashcard">
-//           <div className={`flashcard-inner ${flipped ? 'flipped' : ''}`}>
-//             <div className="flashcard-front">
-//               <h2>{word}</h2>
-//               {imageUrl && <Image src={imageUrl} alt={word} />}
-//               {audioUrl && <button onClick={playAudio}>Play Audio</button>}
-//               <button onClick={handleFlip}>Flip</button>
-//             </div>
-//             <div className="flashcard-back">
-//               <h2>{translation}</h2>
-//               <form onSubmit={handleSubmit}>
-//                 <input
-//                   type="text"
-//                   value={userInput}
-//                   onChange={(e) => setUserInput(e.target.value)}
-//                   placeholder="Enter translation"
-//                 />
-//                 <button type="submit">Check</button>
-//               </form>
-//             </div>
-//           </div>
-//         </div>
-//     );
-// };
-    
-// export default Flashcard;
-
-
-
-
-
-
-
-
-const Flashcard = ({ word, translation, image, audio }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
+const Flashcard = ({ word, translation, image, audio, isFlipped, onFlip, onAnswer }) => {
   const [userInput, setUserInput] = useState('');
   const [feedback, setFeedback] = useState('');
 
-  const handleFlip = () => {
-    setIsFlipped(!isFlipped);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (userInput.toLowerCase() === translation.toLowerCase()) {
-      setFeedback('Correct!');
-    } else {
-      setFeedback('Incorrect. Try again.');
-    }
+    e.stopPropagation();
+    const correct = userInput.trim().toLowerCase() === translation.toLowerCase();
+    setFeedback(correct ? 'Correct!' : 'Incorrect. Try again.');
+    if (onAnswer) onAnswer(correct);
   };
 
+  // Reset input/feedback when the card changes (word changes)
+  React.useEffect(() => {
+    setUserInput('');
+    setFeedback('');
+  }, [word]);
+
   return (
-    <div className="flashcard" onClick={handleFlip}>
-      <div className={`flashcard-inner ${isFlipped ? 'flipped' : ''}`}>
-        <div className="flashcard-front">
+    <div className={styles.flashcard} onClick={onFlip}>
+      <div className={`${styles.flashcardInner} ${isFlipped ? styles.flipped : ''}`}>
+
+        <div className={styles.flashcardFront}>
           <h2>{word}</h2>
-          <Image src={image} width={500} height={300} alt={word} />
-          <ReactAudioPlayer src={audio} controls />
+          {image && (
+            <img
+              src={image}
+              alt={word}
+              className={styles.vocabularyImage}
+              onError={(e) => { e.target.style.display = 'none'; }}
+            />
+          )}
+          {audio && (
+            <audio controls src={audio} onClick={(e) => e.stopPropagation()}>
+              Your browser does not support audio.
+            </audio>
+          )}
+          <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.25)', marginTop: '0.5rem' }}>
+            Press Space or tap to flip
+          </p>
         </div>
-        <div className="flashcard-back">
+
+        <div className={styles.flashcardBack} onClick={(e) => e.stopPropagation()}>
+          <p>Translation: <strong style={{ color: '#22d3ee' }}>{translation}</strong></p>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
-              placeholder="Enter translation"
+              placeholder="Type the translation…"
+              onClick={(e) => e.stopPropagation()}
+              autoFocus={isFlipped}
             />
-            <button type="submit">Check</button>
+            <button type="submit" className={styles.audioButton}>Check</button>
           </form>
-          {feedback && <p>{feedback}</p>}
-          <p>Correct translation: {translation}</p>
+          {feedback && (
+            <p style={{
+              fontSize: '0.85rem',
+              fontWeight: '600',
+              color: feedback === 'Correct!' ? '#4ade80' : '#f87171',
+              marginTop: '0.25rem',
+            }}>
+              {feedback}
+            </p>
+          )}
         </div>
+
       </div>
     </div>
   );

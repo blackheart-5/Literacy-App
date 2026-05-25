@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\base5\\\\literacy-app\\\\pages\" -Recurse -File | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\base5\\\\literacy-app\\\\components\" -Recurse -File | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\base5\\\\literacy-app\\\\models\" -Recurse -File | ForEach-Object { $_.FullName }; Get-ChildItem -Path \"C:\\\\Users\\\\base5\\\\literacy-app\\\\lib\" -Recurse -File | ForEach-Object { $_.FullName }; Get-ChildItem -Path \"C:\\\\Users\\\\base5\\\\literacy-app\\\\utils\" -Recurse -File | ForEach-Object { $_.FullName }; Get-ChildItem -Path \"C:\\\\Users\\\\base5\\\\literacy-app\\\\services\" -Recurse -File | ForEach-Object { $_.FullName }; Get-ChildItem -Path \"C:\\\\Users\\\\base5\\\\literacy-app\\\\hooks\" -Recurse -File | ForEach-Object { $_.FullName }; Get-ChildItem -Path \"C:\\\\Users\\\\base5\\\\literacy-app\\\\routes\" -Recurse -File | ForEach-Object { $_.FullName }; Get-ChildItem -Path \"C:\\\\Users\\\\base5\\\\literacy-app\\\\scripts\" -Recurse -File | ForEach-Object { $_.FullName }; Get-ChildItem -Path \"C:\\\\Users\\\\base5\\\\literacy-app\\\\styles\" -Recurse -File | ForEach-Object { $_.FullName })",
+      "Bash(Get-Service -Name \"MongoDB\" -ErrorAction SilentlyContinue)",
+      "Bash(Get-Process -Name \"mongod\" -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Service *)",
+      "PowerShell(npm install *)",
+      "PowerShell(npx tailwindcss init -p 2>&1)",
+      "PowerShell(.\\\\node_modules\\\\.bin\\\\tailwindcss init -p 2>&1)",
+      "PowerShell(npm list *)"
+    ]
+  }
+}
