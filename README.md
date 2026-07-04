@@ -1,37 +1,51 @@
-# Literacy App
+# Literacy App (LinguaFlash)
 
 ## Overview
-The Literacy App is a full-stack web application designed to enhance vocabulary learning through a flashcard-based system. 
-Built with **Next.js** for server-side rendering and **MongoDB** for user authentication and data management, 
-this app has successfully increased daily active users by 60% within three months of launch.
+A full-stack language-learning web app built with **Next.js** (Pages Router) and **MongoDB**.
+Learn vocabulary through interactive flashcards with difficulty levels, progress tracking,
+and a spaced-repetition review schedule.
 
 ## Features
-- **Flashcard Learning**: Interactive flashcards to help users learn and retain vocabulary effectively.
-- **Spaced Repetition Algorithm**: An intelligent algorithm that adapts to user performance, optimizing the learning process and improving long-term retention rates by 35%.
-- **User Authentication**: Secure login and user management powered by MongoDB.
-- **Responsive Design**: A user-friendly interface that works seamlessly on both desktop and mobile devices.
+- **Flashcard learning** — flip cards, type the translation, get instant feedback.
+- **Difficulty levels** — easy / medium / hard.
+- **Spaced repetition** — review dates scale with performance.
+- **Progress tracking** — accuracy stats and a review-activity chart.
+- **Authentication** — register / login with JWT session cookies (bcrypt-hashed passwords).
 
 ## Tech Stack
-- **Frontend**: Next.js, React, JavaScript
-- **Backend**: Node.js
-- **Database**: MongoDB
-- **Version Control**: Git, GitHub
+- **Framework**: Next.js 15 (Pages Router), React 18
+- **Database**: MongoDB via Mongoose
+- **Auth**: Custom JWT session cookies (`jose`) + `bcryptjs`
+- **Charts**: Chart.js / react-chartjs-2
 
-## Installation
-To get started with the Literacy App, follow these steps:
+## Environment variables
+Copy `.env.example` to `.env` and fill in:
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/literacy-app.git
-In CMD run follwing:
+| Variable         | Description                                              |
+| ---------------- | -------------------------------------------------------- |
+| `MONGODB_URL`    | MongoDB connection string (local or MongoDB Atlas)       |
+| `SESSION_SECRET` | Long random string used to sign session cookies          |
 
-2.  cd literacy-app
+Generate a secret with: `openssl rand -base64 32`
 
-3.  npm install
-Set up environment variables: Create a .env.local file in the root of your project and add your MongoDB connection string and any other necessary configuration.
+## Local development
+```bash
+npm install
+cp .env.example .env   # then fill in the values
+npm run dev
+```
+Open http://localhost:3000
 
-Run the application:
+Vocabulary is served from a built-in seed set (`models/vocabularydata.js`), so the
+flashcards work without seeding the database. MongoDB is required for auth and progress.
 
-4. npm run dev
-5. 
-Visit the app: Open your browser and go to http://localhost:3000.
+## Deploy to Vercel
+1. Push this repo to GitHub (already done).
+2. In the [Vercel dashboard](https://vercel.com/new), import the repository.
+3. Add the environment variables (`MONGODB_URL`, `SESSION_SECRET`) for the
+   Production, Preview, and Development environments.
+4. Deploy. Next.js is detected automatically — no extra config needed.
+
+For a hosted database, create a free cluster on
+[MongoDB Atlas](https://www.mongodb.com/atlas), allow access from `0.0.0.0/0`
+(or Vercel's ranges), and use its `mongodb+srv://…` connection string as `MONGODB_URL`.

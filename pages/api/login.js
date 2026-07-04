@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import User from '@/models/User.js';
 import dbConnect from '@/utils/database.js';
 import { createSession } from '@/lib/session';

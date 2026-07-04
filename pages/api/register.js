@@ -1,5 +1,5 @@
 import User from '@/models/User';
-import bycrypt from 'bcrypt';
+import bycrypt from 'bcryptjs';
 import dbConnect from '@/utils/database';
 import { createSession } from '@/lib/session';
 
