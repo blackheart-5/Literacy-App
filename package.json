@@ -2,6 +2,9 @@
   "name": "literacy-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "populate-db": "node scripts/populateDatabase.js",
     "dev": "next dev",
@@ -17,13 +20,10 @@
     "jose": "^4.15.9",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
-    "next": "^15.4.0",
+    "next": "^15.5.21",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18"
-  },
-  "engines": {
-  "node": "24.x"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
